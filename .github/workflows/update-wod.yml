@@ -1,0 +1,21 @@
+name: Auto Update Garage WOD Display
+
+on:
+  repository_dispatch:
+    types: [update_wod]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update WOD HTML
+        run: |
+          echo "${{ github.event.client_payload.html }}" > index.html
+          git config --global user.name "GarageWODBot"
+          git config --global user.email "you@example.com"
+          git add index.html
+          git commit -m "Auto update WOD display"
+          git push
