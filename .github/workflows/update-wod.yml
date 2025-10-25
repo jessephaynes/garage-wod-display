@@ -3,6 +3,7 @@ name: Auto Update Garage WOD Display
 on:
   repository_dispatch:
     types: [update_wod]
+  workflow_dispatch:    # 👈 allows manual runs from the Actions tab
 
 jobs:
   update:
