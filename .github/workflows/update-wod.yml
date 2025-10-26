@@ -15,8 +15,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update WOD HTML
+        env:
+          WOD_HTML: ${{ github.event.client_payload.html }}
         run: |
-          printf "%s" "${{ github.event.client_payload.html }}" > index.html
+          if [ -z "$WOD_HTML" ]; then
+            echo "⚠️ No HTML content received from webhook. Exiting."
+            exit 1
+          fi
+          printf "%s" "$WOD_HTML" > index.html
           git config --global user.name "GarageWODBot"
           git config --global user.email "you@example.com"
           git add index.html
