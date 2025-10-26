@@ -16,9 +16,9 @@ jobs:
 
       - name: Update WOD HTML
         run: |
-          echo "${{ github.event.client_payload.html }}" > index.html
+          printf "%s" "${{ github.event.client_payload.html }}" > index.html
           git config --global user.name "GarageWODBot"
           git config --global user.email "you@example.com"
           git add index.html
-          git commit -m "Auto update WOD display"
+          git commit -m "Auto update WOD display" || echo "No changes to commit"
           git push
