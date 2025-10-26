@@ -15,23 +15,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Debug payload
-        run: |
-          echo "---- START PAYLOAD ----"
-          echo "${{ github.event.client_payload.html }}" | head -n 10
-          echo "---- END PAYLOAD ----"
-
       - name: Update WOD HTML
-        env:
-          WOD_HTML: ${{ github.event.client_payload.html }}
         run: |
-          if [ -z "$WOD_HTML" ]; then
-            echo "⚠️ No HTML content received from webhook. Exiting."
-            exit 1
-          fi
-          printf "%s" "$WOD_HTML" > index.html
+          # Decode the Base64 HTML payload into index.html
+          echo "${{ github.event.client_payload.html_b64 }}" | base64 --decode > index.html
+
+          # Configure Git identity for commit
           git config --global user.name "GarageWODBot"
           git config --global user.email "you@example.com"
-          git add index.html
-          git commit -m "Auto update WOD display" || echo "No changes to commit"
-          git push
+
+          # Commit and push only if file actually changed
+          if [ -n "$(git status --porcelain)" ]; then
+            git add index.html
+            git commit -m "Auto update WOD display"
+            git push
+          else
+            echo "No changes to commit."
+          fi
