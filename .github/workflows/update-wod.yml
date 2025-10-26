@@ -3,16 +3,23 @@ name: Auto Update Garage WOD Display
 on:
   repository_dispatch:
     types: [update_wod]
-  workflow_dispatch:    # 👈 allows manual runs from the Actions tab
+  workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Debug payload
+        run: |
+          echo "---- START PAYLOAD ----"
+          echo "${{ github.event.client_payload.html }}" | head -n 10
+          echo "---- END PAYLOAD ----"
 
       - name: Update WOD HTML
         env:
