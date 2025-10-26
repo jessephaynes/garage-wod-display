@@ -7,36 +7,45 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #e6e6e6;
+      font-family: 'Oswald', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f2f2f2 0%, #e0e0e0 100%);
+      color: #222;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px;
       min-height: 100vh;
+      text-align: left;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #00c853;
-      margin-bottom: 20px;
+      letter-spacing: 3px;
+      color: #222;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px #999;
+      border-bottom: 6px solid #ffb300;
+      padding-bottom: 10px;
     }
 
     .section {
       width: 90%;
       max-width: 1000px;
-      margin-bottom: 35px;
+      margin: 40px auto;
+      background: #f8f8f8;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+      border-left: 6px solid #ff6f00;
+      border-radius: 8px;
+      padding: 20px 28px;
     }
 
     h2 {
-      font-size: 1.8rem;
-      color: #ffeb3b;
-      border-bottom: 2px solid #444;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
+      font-size: 1.9rem;
+      color: #ff6f00;
+      border-bottom: 2px dashed #bbb;
+      padding-bottom: 6px;
+      margin-bottom: 15px;
       text-transform: uppercase;
     }
 
@@ -47,36 +56,53 @@
     }
 
     li {
-      margin: 8px 0;
-      font-size: 1.2rem;
+      margin: 6px 0;
+      font-size: 1.3rem;
     }
 
     .highlight {
-      color: #00c853;
+      color: #d84315;
       font-weight: bold;
+      text-transform: uppercase;
     }
 
     .notes {
-      background-color: #1e1e1e;
-      border-left: 4px solid #00c853;
+      background-color: #fff8e1;
+      border-left: 5px solid #ffb300;
       padding: 14px 18px;
-      border-radius: 8px;
+      border-radius: 6px;
       margin-top: 14px;
-      font-size: 1.05rem;
-      color: #ccc;
+      font-size: 1.1rem;
+      color: #444;
       line-height: 1.5;
     }
 
     .notes strong {
-      color: #ffeb3b;
+      color: #d84315;
     }
 
     .footer {
       font-size: 0.9rem;
-      color: #777;
-      margin-top: 40px;
+      color: #555;
+      margin-top: 60px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* Subtle background texture effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(#ccc 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.3;
+      pointer-events: none;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1>Today's WOD</h1>
@@ -85,51 +111,51 @@
     <h2>Part A — Warm-Up</h2>
     <ul>
       <li>3 Rounds:</li>
-      <li>200m Run</li>
+      <li>250m Row</li>
       <li>10 Air Squats</li>
       <li>10 Push-Ups</li>
-      <li>10 PVC Good Mornings</li>
+      <li>10 PVC Pass-Throughs</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>Part B — Strength</h2>
     <ul>
-      <li><span class="highlight">Front Squat</span>: 5 sets of 3 reps @ 80%</li>
+      <li><span class="highlight">Clean & Jerk</span>: 5 sets of 2 reps @ 75%</li>
     </ul>
     <div class="notes">
-      <p><strong>Focus:</strong> Maintain upright torso, control descent.</p>
-      <p><strong>Intent:</strong> Heavy triples with perfect form.</p>
+      <p><strong>Focus:</strong> Crisp technique — fast elbows, aggressive drive.</p>
+      <p><strong>Intent:</strong> Moderate loading, reinforcing speed under the bar.</p>
     </div>
   </div>
 
   <div class="section">
     <h2>Part C — MetCon</h2>
     <ul>
-      <li>15 Minute AMRAP:</li>
-      <li>10 Box Jump Overs (24/20)</li>
-      <li>15 Dumbbell Snatches (50/35)</li>
-      <li>200m Run</li>
+      <li>For Time (12-min Cap):</li>
+      <li>21-15-9</li>
+      <li>Thrusters (95/65)</li>
+      <li>Pull-Ups</li>
     </ul>
     <div class="notes">
-      <p><strong>Stimulus:</strong> Moderate pacing; steady breathing, aim for 4+ rounds.</p>
-      <p><strong>Goal:</strong> Consistent transitions, no long breaks.</p>
-      <p><strong>Time Cap:</strong> 15 minutes</p>
+      <p><strong>Stimulus:</strong> Unbroken thrusters if possible — fast cycle time.</p>
+      <p><strong>Goal:</strong> 7–10 minutes.</p>
+      <p><strong>Coaching Note:</strong> Quick transitions between barbell and rig.</p>
     </div>
   </div>
 
   <div class="section">
     <h2>Part D — Accessory (Optional)</h2>
     <ul>
-      <li>4x12 Seated Dumbbell Press (50/35)</li>
-      <li>3x20 Banded Good Mornings</li>
-      <li>2x60s L-Sit Hold (on rings)</li>
+      <li>4x10 Dumbbell Bench Press (50/35)</li>
+      <li>3x12 GHD Sit-Ups</li>
+      <li>3x15 Banded Pull-Aparts</li>
     </ul>
     <div class="notes">
-      <p><strong>Accessory Intent:</strong> Shoulder stability and midline endurance.</p>
+      <p><strong>Accessory Intent:</strong> Upper-body endurance and shoulder stability.</p>
     </div>
   </div>
 
-  <div class="footer">Garage WOD Display | © 2025</div>
+  <div class="footer">Garage WOD Display | Built for the grind © 2025</div>
 </body>
 </html>
