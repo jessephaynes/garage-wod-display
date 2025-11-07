@@ -6,127 +6,19 @@
   <title>Today's WOD</title>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: radial-gradient(circle at top left, #2b2b2b 0%, #0f0f0f 100%);
-      color: #eaeaea;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      min-height: 100vh;
-      text-align: left;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-family: 'Anton', sans-serif;
-      font-size: 3.5rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #dcdcdc;
-      text-shadow: 2px 2px 5px #000, 0 0 15px rgba(91,155,213,0.4);
-      margin-bottom: 10px;
-      border-bottom: 5px solid #4da6ff;
-      padding-bottom: 10px;
-    }
-    .section {
-      width: 95%;
-      max-width: 1100px;
-      margin: 30px auto;
-      background: linear-gradient(145deg, #242424, #1a1a1a);
-      border: 1px solid #3a3a3a;
-      border-radius: 10px;
-      box-shadow:
-        inset 0 0 6px rgba(255,255,255,0.05),
-        0 6px 20px rgba(0,0,0,0.7);
-      padding: 24px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: repeating-linear-gradient(
-        45deg,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 2px,
-        transparent 2px,
-        transparent 4px
-      );
-      opacity: 0.2;
-      pointer-events: none;
-    }
-    .section::after {
-      content: "";
-      position: absolute;
-      top: 10px; left: 10px;
-      width: calc(100% - 20px);
-      height: calc(100% - 20px);
-      border: 2px dotted rgba(255,255,255,0.05);
-      border-radius: 6px;
-      pointer-events: none;
-    }
-    h2 {
-      font-family: 'Anton', sans-serif;
-      font-size: 2rem;
-      color: #4da6ff;
-      text-shadow: 0 0 5px rgba(77,166,255,0.6);
-      border-bottom: 1px solid #555;
-      padding-bottom: 8px;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-    }
-    ul { list-style: none; padding: 0; margin: 0; }
-    li {
-      margin: 8px 0;
-      font-size: 1.5rem;
-      color: #f3f3f3;
-    }
-    .highlight {
-      color: #4da6ff;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .notes {
-      background: linear-gradient(135deg, #181818, #202020);
-      border-left: 4px solid #4da6ff;
-      padding: 16px 20px;
-      border-radius: 8px;
-      margin-top: 18px;
-      font-size: 1.2rem;
-      color: #ccc;
-      line-height: 1.6;
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.03);
-    }
-    .notes strong { color: #4da6ff; }
-    .footer {
-      font-size: 1rem;
-      color: #777;
-      margin-top: 50px;
-      padding-top: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-top: 1px solid #444;
-      text-shadow: 1px 1px 2px #000;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: repeating-linear-gradient(
-        -45deg,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 3px,
-        transparent 3px,
-        transparent 6px
-      );
-      opacity: 0.25;
-      pointer-events: none;
-    }
+    body {margin: 0;font-family: 'Roboto', sans-serif;background: radial-gradient(circle at top left, #2b2b2b 0%, #0f0f0f 100%);color: #eaeaea;display: flex;flex-direction: column;align-items: center;padding: 40px 20px;min-height: 100vh;text-align: left;overflow-x: hidden;}
+    h1 {font-family: 'Anton', sans-serif;font-size: 3.5rem;text-transform: uppercase;letter-spacing: 2px;color: #dcdcdc;text-shadow: 2px 2px 5px #000, 0 0 15px rgba(91,155,213,0.4);margin-bottom: 10px;border-bottom: 5px solid #4da6ff;padding-bottom: 10px;}
+    .section {width: 95%;max-width: 1100px;margin: 30px auto;background: linear-gradient(145deg, #242424, #1a1a1a);border: 1px solid #3a3a3a;border-radius: 10px;box-shadow: inset 0 0 6px rgba(255,255,255,0.05),0 6px 20px rgba(0,0,0,0.7);padding: 24px 32px;position: relative;overflow: hidden;}
+    .section::before {content: "";position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-image: repeating-linear-gradient(45deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 2px,transparent 2px,transparent 4px);opacity: 0.2;pointer-events: none;}
+    .section::after {content: "";position: absolute;top: 10px;left: 10px;width: calc(100% - 20px);height: calc(100% - 20px);border: 2px dotted rgba(255,255,255,0.05);border-radius: 6px;pointer-events: none;}
+    h2 {font-family: 'Anton', sans-serif;font-size: 2rem;color: #4da6ff;text-shadow: 0 0 5px rgba(77,166,255,0.6);border-bottom: 1px solid #555;padding-bottom: 8px;margin-bottom: 16px;letter-spacing: 1px;}
+    ul {list-style: none;padding: 0;margin: 0;}
+    li {margin: 8px 0;font-size: 1.5rem;color: #f3f3f3;}
+    .highlight {color: #4da6ff;font-weight: bold;text-transform: uppercase;}
+    .notes {background: linear-gradient(135deg, #181818, #202020);border-left: 4px solid #4da6ff;padding: 16px 20px;border-radius: 8px;margin-top: 18px;font-size: 1.2rem;color: #ccc;line-height: 1.6;box-shadow: inset 0 0 10px rgba(255,255,255,0.03);}
+    .notes strong {color: #4da6ff;}
+    .footer {font-size: 1rem;color: #777;margin-top: 50px;padding-top: 10px;text-transform: uppercase;letter-spacing: 2px;border-top: 1px solid #444;text-shadow: 1px 1px 2px #000;}
+    body::before {content: "";position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-image: repeating-linear-gradient(-45deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 3px,transparent 3px,transparent 6px);opacity: 0.25;pointer-events: none;}
   </style>
 </head>
 <body>
@@ -135,62 +27,64 @@
   <div class="section">
     <h2>Part A — Warm-Up</h2>
     <ul>
-      <li>3 Rounds, gradually increasing pace:</li>
-      <li>10 Cal Echo Bike</li>
-      <li>10 Good Mornings (PVC or empty bar)</li>
-      <li>8 KB or Dumbbell Romanian Deadlifts (light)</li>
-      <li>10 Glute Bridges</li>
-      <li>10 Sit-Ups</li>
-      <li>5 Burpees</li>
+      <li>3 Rounds:</li>
+      <li>250 m Echo Row</li>
+      <li>10 Hang Power Cleans (empty barbell)</li>
+      <li>10 Push-Ups</li>
+      <li>8 Jump Squats</li>
+      <li>5 Strict Pull-Ups</li>
     </ul>
     <ul>
-      <li>Then:</li>
-      <li>2×10 Empty Bar Deadlifts</li>
-      <li>2×10 Kip Swings or Hollow Rocks</li>
+      <li>Then, 2 Rounds:</li>
+      <li>3 Power Cleans + 2 Front Squats + 1 Jerk (light, building)</li>
     </ul>
+    <div class="notes">
+      <p><strong>Goal:</strong> Prime hips, shoulders, and CNS for fast barbell turnover.</p>
+    </div>
   </div>
 
   <div class="section">
     <h2>Part B — Strength</h2>
     <ul>
-      <li><span class="highlight">Deadlift</span>: 5×5 @ 70–75%</li>
+      <li><span class="highlight">Power Clean + Push Jerk Complex</span></li>
+      <li>Every 2:00 × 10 sets:</li>
+      <li>1 Power Clean + 1 Push Jerk</li>
+      <li>Build from 60% → 85% (approx. 160–225 lb)</li>
     </ul>
     <div class="notes">
-      <p><strong>Focus:</strong> Controlled touch-and-go reps, flat back, full hip lockout.</p>
-      <p><strong>Intent:</strong> Posterior chain volume and strength.</p>
+      <p><strong>Focus:</strong> Fast elbows, vertical drive, crisp lockout.</p>
+      <p><strong>Intent:</strong> Train explosive coordination — not grinding strength.</p>
     </div>
   </div>
 
   <div class="section">
     <h2>Part C — MetCon</h2>
     <ul>
-      <li>18-Minute AMRAP — <span class="highlight">"The Engine Room"</span>:</li>
-      <li>500 m Echo Row</li>
-      <li>12 Deadlifts (225/155)</li>
-      <li>9 Toes-to-Bar (or V-Ups)</li>
-      <li>200 m Run</li>
+      <li><span class="highlight">"Steam Engine"</span> — For Time (15-min Cap)</li>
+      <li>30 Power Cleans (135/95 lb)</li>
+      <li>40 Wall-Facing Handstand Push-Ups</li>
+      <li>50/40 Cal Echo Bike</li>
+      <li>30 Dumbbell Front Squats (50/35 lb each hand)</li>
     </ul>
     <div class="notes">
-      <p><strong>Stimulus:</strong> Moderate-heavy barbell, sustainable aerobic effort.</p>
-      <p><strong>Goal:</strong> 4–5 rounds with consistent transitions.</p>
+      <p><strong>Stimulus:</strong> Moderate to heavy barbell cycling under fatigue. Push through high heart rate on gymnastics + bike.</p>
+      <p><strong>Goal:</strong> 11–13 minutes. Break early, move often.</p>
     </div>
   </div>
 
   <div class="section">
     <h2>Part D — Accessory (Optional)</h2>
     <ul>
-      <li>3×15 Hip Thrusts (pause 2 sec at top)</li>
-      <li>4×12 GHD Sit-Ups</li>
-      <li>3×15 Single-Leg Dumbbell RDLs (50/35)</li>
-      <li>3×15 Weighted Back Extensions or Banded Good Mornings</li>
-      <li>Optional Finisher:</li>
-      <li>3 Rounds:</li>
-      <li>15 Cal Echo Bike</li>
-      <li>10 Sandbag Over-Shoulder (100/80)</li>
-      <li>Rest 1 min between rounds</li>
+      <li><strong>Core & Midline</strong></li>
+      <li>4×15 GHD Sit-Ups</li>
+      <li>4×20 Banded Side Steps (each direction)</li>
+      <li>3×1:00 Sandbag Front Hold (100/80 lb)</li>
+      <li><strong>Mobility / Recovery</strong></li>
+      <li>10 min hip and shoulder opener flow</li>
+      <li>800 m easy recovery jog or 5 min easy row</li>
     </ul>
     <div class="notes">
-      <p><strong>Intent:</strong> Strengthen glutes, hamstrings, and core while maintaining blood flow and recovery.</p>
+      <p><strong>Intent:</strong> Build midline control, glute stability, and recovery capacity.</p>
     </div>
   </div>
 
