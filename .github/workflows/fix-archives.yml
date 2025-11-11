@@ -1,0 +1,93 @@
+name: Fix Old Archives
+on:
+  workflow_dispatch: # This makes it a manual "Run" button
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fix old archive files
+        run: |
+          # Set up a temporary directory
+          mkdir -p new_wods
+          
+          # Loop over every HTML file in the wods directory
+          for file in wods/*.html; do
+            
+            # Get just the filename (e.g., 2025-11-11.html)
+            FILENAME=$(basename "$file")
+            # Get just the date (e.g., 2025-11-11)
+            DATE=$(echo $FILENAME | sed 's/\.html//')
+
+            echo "Processing $FILENAME..."
+
+            # Check if the file ALREADY has a back-link
+            if grep -q "back-link" "$file"; then
+              echo "...already has a link. Skipping."
+              # Copy it as-is
+              cp "$file" "new_wods/$FILENAME"
+            else
+              # --- This file needs to be fixed! ---
+              echo "...is an old file. Adding template."
+              
+              # Read the old WOD-only content
+              OLD_CONTENT=$(cat "$file")
+              
+              # Now, write a NEW file in its place with the full template
+              cat > "new_wods/$FILENAME" <<EOF
+              <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>WOD: ${DATE}</title>
+                <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+                <style>
+                  body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }
+                  .back-link {
+                    display: inline-block;
+                    margin-bottom: 30px;
+                    padding: 10px 20px;
+                    background: #4da6ff;
+                    color: #0f0f0f;
+                    font-weight: bold;
+                    text-decoration: none;
+                    border-radius: 8px;
+                    font-family: Anton, sans-serif;
+                  }
+                  .back-link:hover { background: #fff; }
+                  .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; }
+                </style>
+              </head>
+              <body>
+                <a href="../index.html" class="back-link">&laquo; Back to Main Page</a>
+                <div class="wod-content">
+                  ${OLD_CONTENT}
+                </div>
+              </body>
+              </html>
+              EOF
+            fi
+          done
+
+          # Replace the old wods directory with the new, fixed one
+          rm -rf wods
+          mv new_wods wods
+          
+          # --- Commit and push the changes ---
+          git config --global user.name "GarageWODBot"
+          git config --global user.email "you@example.com"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git add wods/
+            git commit -m "Fix: Add back-links to old archive files"
+            git push
+          else
+            echo "No old files needed fixing."
+          fi
