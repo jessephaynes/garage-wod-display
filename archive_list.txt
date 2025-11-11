@@ -1,1 +1,2 @@
     <li><a href='wods/2025-11-11.html' style='color:#4da6ff;'>2025-11-11</a></li>
+    <li><a href='wods/2025-11-11.html' style='color:#4da6ff;'>2025-11-11</a></li>
