@@ -1,6 +1,6 @@
 name: Fix Old Archives
 on:
-  workflow_dispatch: # This makes it a manual "Run" button
+  workflow_dispatch:
 
 jobs:
   fix:
@@ -17,74 +17,50 @@ jobs:
           # Set up a temporary directory
           mkdir -p new_wods
           
-          # Check if wods directory exists
-          if [ ! -d "wods" ]; then
-            echo "wods/ directory not found. Nothing to do."
-            exit 0
-          fi
-          
-          # Check if there are any html files to process
-          if ! ls wods/*.html > /dev/null 2>&1; then
-            echo "No .html files found in wods/. Nothing to fix."
+          if [ ! -d "wods" ] || [ -z "$(ls -A wods/*.html 2>/dev/null)" ]; then
+            echo "wods/ directory not found or is empty. Nothing to fix."
             exit 0
           fi
 
           # Loop over every HTML file in the wods directory
           for file in wods/*.html; do
-            
-            # Get just the filename (e.g., 2025-11-11.html)
             FILENAME=$(basename "$file")
-            # Get just the date (e.g., 2025-11-11)
             DATE=$(echo $FILENAME | sed 's/\.html//')
-
             echo "Processing $FILENAME..."
 
-            # Check if the file ALREADY has a back-link
             if grep -q "back-link" "$file"; then
               echo "...already has a link. Skipping."
-              # Copy it as-is
               cp "$file" "new_wods/$FILENAME"
             else
-              # --- This file needs to be fixed! ---
               echo "...is an old file. Adding template."
-              
-              # Read the old WOD-only content
               OLD_CONTENT=$(cat "$file")
               
-              # Now, write a NEW file in its place with the full template
-              cat > "new_wods/$FILENAME" <<-EOF
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>WOD: ${DATE}</title>
-                <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-                <style>
-                  body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }
-                  .back-link {
-                    display: inline-block;
-                    margin-bottom: 30px;
-                    padding: 10px 20px;
-                    background: #4da6ff;
-                    color: #0f0f0f;
-                    font-weight: bold;
-                    text-decoration: none;
-                    border-radius: 8px;
-                    font-family: Anton, sans-serif;
-                  }
-                  .back-link:hover { background: #fff; }
-                  .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; }
-                </style>
-              </head>
-              <body>
-                <a href="../index.html" class="back-link">&laquo; Back to Main Page</a>
-                <div class="wod-content">
-                  ${OLD_CONTENT}
-                </div>
-              </body>
-              </html>
-              EOF
+              # --- THE FIX ---
+              # Use a group of 'echo' commands to write the file.
+              # This avoids all YAML/shell 'EOF' conflicts.
+              (
+                echo "<!DOCTYPE html>"
+                echo "<html lang=\"en\">"
+                echo "<head>"
+                echo "  <meta charset=\"UTF-8\" />"
+                echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"
+                echo "  <title>WOD: ${DATE}</title>"
+                echo "  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap\" rel=\"stylesheet\">"
+                echo "  <style>"
+                echo "    body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }"
+                echo "    .back-link { display: inline-block; margin-bottom: 30px; padding: 10px 20px; background: #4da6ff; color: #0f0f0f; font-weight: bold; text-decoration: none; border-radius: 8px; font-family: Anton, sans-serif; }"
+                echo "    .back-link:hover { background: #fff; }"
+                echo "    .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; }"
+                echo "  </style>"
+                echo "</head>"
+                echo "<body>"
+                echo "  <a href=\"../index.html\" class=\"back-link\">&laquo; Back to Main Page</a>"
+                echo "  <div class=\"wod-content\">"
+                echo "${OLD_CONTENT}"
+                echo "  </div>"
+                echo "</body>"
+                echo "</html>"
+              ) > "new_wods/$FILENAME"
             fi
           done
 
