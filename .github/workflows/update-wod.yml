@@ -24,72 +24,54 @@ jobs:
           # --- 1. SETUP & DECODE ---
           DATE=$(date +%F)
           mkdir -p wods
-
-          # Decode the payload into a temporary file first
           echo "${{ github.event.client_payload.html_b64 }}" | base64 --decode > temp_wod.html
-          
-          # Read the raw WOD content into a variable
           LATEST_CONTENT=$(cat temp_wod.html)
 
-          # --- 2. CREATE THE NEW ARCHIVE PAGE (WITH BACK LINK) ---
-          # This replaces your "cp index.html wods/${DATE}.html" line
-          cat > wods/${DATE}.html <<EOF
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>WOD: ${DATE}</title>
-            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-            <style>
-              body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }
-              /* Style for the "Back" link */
-              .back-link {
-                display: inline-block;
-                margin-bottom: 30px;
-                padding: 10px 20px;
-                background: #4da6ff;
-                color: #0f0f0f;
-                font-weight: bold;
-                text-decoration: none;
-                border-radius: 8px;
-                font-family: Anton, sans-serif;
-              }
-              .back-link:hover { background: #fff; }
-              .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; }
-            </style>
-          </head>
-          <body>
-            
-            <a href="../index.html" class="back-link">&laquo; Back to Main Page</a>
-
-            <div class="wod-content">
-              ${LATEST_CONTENT}
-            </div>
-
-          </body>
-          </html>
-          EOF
+          # --- 2. CREATE THE NEW ARCHIVE PAGE ---
+          # Replaced 'cat <<EOF' with 'echo' commands to fix YAML error
+          (
+            echo "<!DOCTYPE html>"
+            echo "<html lang=\"en\">"
+            echo "<head>"
+            echo "  <meta charset=\"UTF-8\" />"
+            echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"
+            echo "  <title>WOD: ${DATE}</title>"
+            echo "  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap\" rel=\"stylesheet\">"
+            echo "  <style>"
+            echo "    body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }"
+            echo "    .back-link { display: inline-block; margin-bottom: 30px; padding: 10px 20px; background: #4da6ff; color: #0f0f0f; font-weight: bold; text-decoration: none; border-radius: 8px; font-family: Anton, sans-serif; }"
+            echo "    .back-link:hover { background: #fff; }"
+            echo "    .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; }"
+            echo "  </style>"
+            echo "</head>"
+            echo "<body>"
+            echo "  <a href=\"../index.html\" class=\"back-link\">&laquo; Back to Main Page</a>"
+            echo "  <div class=\"wod-content\">"
+            echo "${LATEST_CONTENT}"
+            echo "  </div>"
+            echo "</body>"
+            echo "</html>"
+          ) > wods/${DATE}.html
 
           # --- 3. BUILD THE MAIN index.html PAGE ---
-          cat > index.html <<EOF
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Garage WOD Display</title>
-            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-          </head>
-          <body style="margin:0;background:#0f0f0f;color:#eaeaea;font-family:Roboto,sans-serif;text-align:center;">
-            <div id="latest" style="padding:20px;">
-              ${LATEST_CONTENT}
-            </div>
-          
-            <div id="archive" style="border-top:2px solid #333;margin-top:40px;padding:20px;">
-              <h2 style="font-family:Anton,sans-serif;color:#4da6ff;">Workout Archive</h2>
-              <ul style="list-style:none;padding:0;">
-          EOF
+          # Replaced 'cat <<EOF' with 'echo' commands
+          (
+            echo "<!DOCTYPE html>"
+            echo "<html lang=\"en\">"
+            echo "<head>"
+            echo "  <meta charset=\"UTF-8\" />"
+            echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"
+            echo "  <title>Garage WOD Display</title>"
+            echo "  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap\" rel=\"stylesheet\">"
+            echo "</head>"
+            echo "<body style=\"margin:0;background:#0f0f0f;color:#eaeaea;font-family:Roboto,sans-serif;text-align:center;\">"
+            echo "  <div id=\"latest\" style=\"padding:20px;\">"
+            echo "${LATEST_CONTENT}"
+            echo "  </div>"
+            echo "  <div id=\"archive\" style=\"border-top:2px solid #333;margin-top:40px;padding:20px;\">"
+            echo "    <h2 style=\"font-family:Anton,sans-serif;color:#4da6ff;\">Workout Archive</h2>"
+            echo "    <ul style=\"list-style:none;padding:0;\">"
+          ) > index.html
           
           # Add newest link at the top of the list
           echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE}</a></li>" >> index.html
@@ -102,23 +84,25 @@ jobs:
           # Update archive list file
           echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE}</a></li>" > new_archive.txt
           if [ -f archive_list.txt ]; then
+            # --- THIS IS THE .json TYPO FIX ---
             cat archive_list.txt >> new_archive.txt
           fi
           mv new_archive.txt archive_list.txt
 
           # Close out the HTML
-          cat >> index.html <<EOF
-                </ul>
-              </div>
-              <div style="font-size:0.8rem;color:#777;margin-top:20px;">Garage WOD Display © 2025</div>
-            </body>
-            </html>
-          EOF
+          # Replaced 'cat <<EOF' with 'echo' commands
+          (
+            echo "      </ul>"
+            echo "    </div>"
+            echo "    <div style=\"font-size:0.8rem;color:#777;margin-top:20px;\">Garage WOD Display © 2025</div>"
+            echo "  </body>"
+            echo "</html>"
+          ) >> index.html
           
           # Clean up the temporary file
           rm temp_wod.html
           
-          # --- 4. COMMIT & PUSH (Your logic is unchanged) ---
+          # --- 4. COMMIT & PUSH ---
           if [ -n "$(git status --porcelain)" ]; then
             git add index.html archive_list.txt wods/
             git commit -m "Auto update WOD for ${DATE}"
