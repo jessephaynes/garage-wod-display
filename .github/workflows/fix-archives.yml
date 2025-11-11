@@ -52,7 +52,6 @@ jobs:
               OLD_CONTENT=$(cat "$file")
               
               # Now, write a NEW file in its place with the full template
-              # --- THE FIX IS HERE: <<-EOF ---
               cat > "new_wods/$FILENAME" <<-EOF
               <!DOCTYPE html>
               <html lang="en">
