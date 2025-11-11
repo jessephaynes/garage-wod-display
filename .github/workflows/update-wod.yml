@@ -24,10 +24,64 @@ jobs:
           git config --global user.name "GarageWODBot"
           git config --global user.email "you@example.com"
 
+          # Archive today's WOD and rebuild homepage visually
+          DATE=$(date +%F)
+          mkdir -p wods
+
+          # Save a dated copy
+          cp index.html wods/${DATE}.html
+
+          # Extract current WOD content (for embedding in index)
+          LATEST_CONTENT=$(cat index.html)
+
+          # Build a new index.html with archive links
+          cat > index.html <<EOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Garage WOD Display</title>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+          </head>
+          <body style="margin:0;background:#0f0f0f;color:#eaeaea;font-family:Roboto,sans-serif;text-align:center;">
+            <div id="latest" style="padding:20px;">
+              ${LATEST_CONTENT}
+            </div>
+          
+            <div id="archive" style="border-top:2px solid #333;margin-top:40px;padding:20px;">
+              <h2 style="font-family:Anton,sans-serif;color:#4da6ff;">Workout Archive</h2>
+              <ul style="list-style:none;padding:0;">
+          EOF
+          
+          # Add newest link at the top of the list
+          echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE}</a></li>" >> index.html
+
+          # Include previous archive entries if they exist
+          if [ -f archive_list.txt ]; then
+            cat archive_list.txt >> index.html
+          fi
+
+          # Update archive list file
+          echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE}</a></li>" > new_archive.txt
+          if [ -f archive_list.txt ]; then
+            cat archive_list.txt >> new_archive.txt
+          fi
+          mv new_archive.txt archive_list.txt
+
+          # Close out the HTML
+          cat >> index.html <<EOF
+                </ul>
+              </div>
+              <div style="font-size:0.8rem;color:#777;margin-top:20px;">Garage WOD Display © 2025</div>
+            </body>
+            </html>
+          EOF
+                    
           # Commit and push only if file actually changed
           if [ -n "$(git status --porcelain)" ]; then
-            git add index.html
-            git commit -m "Auto update WOD display"
+            git add index.html archive_list.txt wods/
+            git commit -m "Auto update WOD for ${DATE}"
             git push
           else
             echo "No changes to commit."
