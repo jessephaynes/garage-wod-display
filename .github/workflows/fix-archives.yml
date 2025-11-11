@@ -17,6 +17,18 @@ jobs:
           # Set up a temporary directory
           mkdir -p new_wods
           
+          # Check if wods directory exists
+          if [ ! -d "wods" ]; then
+            echo "wods/ directory not found. Nothing to do."
+            exit 0
+          fi
+          
+          # Check if there are any html files to process
+          if ! ls wods/*.html > /dev/null 2>&1; then
+            echo "No .html files found in wods/. Nothing to fix."
+            exit 0
+          fi
+
           # Loop over every HTML file in the wods directory
           for file in wods/*.html; do
             
@@ -40,7 +52,8 @@ jobs:
               OLD_CONTENT=$(cat "$file")
               
               # Now, write a NEW file in its place with the full template
-              cat > "new_wods/$FILENAME" <<EOF
+              # --- THE FIX IS HERE: <<-EOF ---
+              cat > "new_wods/$FILENAME" <<-EOF
               <!DOCTYPE html>
               <html lang="en">
               <head>
