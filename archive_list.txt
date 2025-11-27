@@ -1,3 +1,4 @@
+    <li><a href='wods/2025-11-27.html' style='color:#4da6ff;'>2025-11-27</a></li>
     <li><a href='wods/2025-11-21.html' style='color:#4da6ff;'>2025-11-21</a></li>
     <li><a href='wods/2025-11-15.html' style='color:#4da6ff;'>2025-11-15</a></li>
     <li><a href='wods/2025-11-13.html' style='color:#4da6ff;'>2025-11-13</a></li>
