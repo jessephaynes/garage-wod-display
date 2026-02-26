@@ -23,127 +23,19 @@
   <title>Today's WOD</title>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: radial-gradient(circle at top left, #2b2b2b 0%, #0f0f0f 100%);
-      color: #eaeaea;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      min-height: 100vh;
-      text-align: left;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-family: 'Anton', sans-serif;
-      font-size: 3.5rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #dcdcdc;
-      text-shadow: 2px 2px 5px #000, 0 0 15px rgba(91,155,213,0.4);
-      margin-bottom: 10px;
-      border-bottom: 5px solid #4da6ff;
-      padding-bottom: 10px;
-    }
-    .section {
-      width: 95%;
-      max-width: 1100px;
-      margin: 30px auto;
-      background: linear-gradient(145deg, #242424, #1a1a1a);
-      border: 1px solid #3a3a3a;
-      border-radius: 10px;
-      box-shadow:
-        inset 0 0 6px rgba(255,255,255,0.05),
-        0 6px 20px rgba(0,0,0,0.7);
-      padding: 24px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: repeating-linear-gradient(
-        45deg,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 2px,
-        transparent 2px,
-        transparent 4px
-      );
-      opacity: 0.2;
-      pointer-events: none;
-    }
-    .section::after {
-      content: "";
-      position: absolute;
-      top: 10px; left: 10px;
-      width: calc(100% - 20px);
-      height: calc(100% - 20px);
-      border: 2px dotted rgba(255,255,255,0.05);
-      border-radius: 6px;
-      pointer-events: none;
-    }
-    h2 {
-      font-family: 'Anton', sans-serif;
-      font-size: 2rem;
-      color: #4da6ff;
-      text-shadow: 0 0 5px rgba(77,166,255,0.6);
-      border-bottom: 1px solid #555;
-      padding-bottom: 8px;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-    }
+    body { margin: 0; font-family: 'Roboto', sans-serif; background: radial-gradient(circle at top left, #2b2b2b 0%, #0f0f0f 100%); color: #eaeaea; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; min-height: 100vh; text-align: left; overflow-x: hidden; }
+    h1 { font-family: 'Anton', sans-serif; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 2px; color: #dcdcdc; text-shadow: 2px 2px 5px #000, 0 0 15px rgba(91,155,213,0.4); margin-bottom: 10px; border-bottom: 5px solid #4da6ff; padding-bottom: 10px; }
+    .section { width: 95%; max-width: 1100px; margin: 30px auto; background: linear-gradient(145deg, #242424, #1a1a1a); border: 1px solid #3a3a3a; border-radius: 10px; box-shadow: inset 0 0 6px rgba(255,255,255,0.05), 0 6px 20px rgba(0,0,0,0.7); padding: 24px 32px; position: relative; overflow: hidden; }
+    .section::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 4px); opacity: 0.2; pointer-events: none; }
+    .section::after { content: ""; position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px); border: 2px dotted rgba(255,255,255,0.05); border-radius: 6px; pointer-events: none; }
+    h2 { font-family: 'Anton', sans-serif; font-size: 2rem; color: #4da6ff; text-shadow: 0 0 5px rgba(77,166,255,0.6); border-bottom: 1px solid #555; padding-bottom: 8px; margin-bottom: 16px; letter-spacing: 1px; }
     ul { list-style: none; padding: 0; margin: 0; }
-    li {
-      margin: 8px 0;
-      font-size: 1.5rem;
-      color: #f3f3f3;
-    }
-    .highlight {
-      color: #4da6ff;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .notes {
-      background: linear-gradient(135deg, #181818, #202020);
-      border-left: 4px solid #4da6ff;
-      padding: 16px 20px;
-      border-radius: 8px;
-      margin-top: 18px;
-      font-size: 1.2rem;
-      color: #ccc;
-      line-height: 1.6;
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.03);
-    }
+    li { margin: 8px 0; font-size: 1.5rem; color: #f3f3f3; }
+    .highlight { color: #4da6ff; font-weight: bold; text-transform: uppercase; }
+    .notes { background: linear-gradient(135deg, #181818, #202020); border-left: 4px solid #4da6ff; padding: 16px 20px; border-radius: 8px; margin-top: 18px; font-size: 1.2rem; color: #ccc; line-height: 1.6; box-shadow: inset 0 0 10px rgba(255,255,255,0.03); }
     .notes strong { color: #4da6ff; }
-    .footer {
-      font-size: 1rem;
-      color: #777;
-      margin-top: 50px;
-      padding-top: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-top: 1px solid #444;
-      text-shadow: 1px 1px 2px #000;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: repeating-linear-gradient(
-        -45deg,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 3px,
-        transparent 3px,
-        transparent 6px
-      );
-      opacity: 0.25;
-      pointer-events: none;
-    }
+    .footer { font-size: 1rem; color: #777; margin-top: 50px; padding-top: 10px; text-transform: uppercase; letter-spacing: 2px; border-top: 1px solid #444; text-shadow: 1px 1px 2px #000; }
+    body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 3px, transparent 3px, transparent 6px); opacity: 0.25; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -168,7 +60,7 @@
     </ul>
     <div class="notes">
       <p><strong>Focus:</strong> Upright torso, controlled descent, strong drive out of the hole.</p>
-      <p><strong>Intent:</strong> Moderate-heavy effort without fatiguing legs before Open attempt.</p>
+      <p><strong>Intent:</strong> Prime the legs without excessive fatigue before the Open effort.</p>
     </div>
   </div>
 
@@ -181,9 +73,9 @@
       <li>30 Wall Balls</li>
       <li>18 Box Jump-Overs</li>
       <li>40 Wall Balls</li>
-      <li>18 Box Step-Overs</li>
+      <li>18 Box Step-Overs (Holding Wall Ball)</li>
       <li>66 Wall Balls</li>
-      <li>18 Box Step-Overs</li>
+      <li>18 Box Step-Overs (Holding Wall Ball)</li>
       <li>40 Wall Balls</li>
       <li>18 Box Jump-Overs</li>
       <li>30 Wall Balls</li>
@@ -191,9 +83,9 @@
       <li>20 Wall Balls</li>
     </ul>
     <div class="notes">
-      <p><strong>Standards:</strong> 20/14 lb ball (10'/9'), 24"/20" box.</p>
-      <p><strong>Stimulus:</strong> Leg stamina + aerobic capacity under fatigue.</p>
-      <p><strong>Strategy:</strong> Break wall balls early (10–15 reps). Stay steady on box work. Breathe on transitions.</p>
+      <p><strong>Standards:</strong> 20/14 lb ball (10'/9'), 24"/20" box. Wall ball must be held during designated step-over sets.</p>
+      <p><strong>Stimulus:</strong> High-volume leg stamina with grip and midline fatigue under pressure.</p>
+      <p><strong>Strategy:</strong> Break wall balls early (10–15 reps). Control breathing before the 66. Stay steady and unbroken on wall-ball step-overs if possible.</p>
     </div>
   </div>
 
@@ -206,7 +98,7 @@
       <li>10–15 Minutes Mobility (hips, ankles, shoulders)</li>
     </ul>
     <div class="notes">
-      <p><strong>Accessory Intent:</strong> Shoulder endurance, core stability, and recovery support post-Open effort.</p>
+      <p><strong>Accessory Intent:</strong> Shoulder endurance, midline stability, and recovery support post-Open effort.</p>
     </div>
   </div>
 
