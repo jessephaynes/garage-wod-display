@@ -1,4 +1,5 @@
     <li><a href='wods/2026-05-19.html' style='color:#4da6ff;'>2026-05-19</a></li>
+    <li><a href='wods/2026-05-19.html' style='color:#4da6ff;'>2026-05-19</a></li>
     <li><a href='wods/2026-05-18.html' style='color:#4da6ff;'>2026-05-18</a></li>
     <li><a href='wods/2026-05-13.html' style='color:#4da6ff;'>2026-05-13</a></li>
     <li><a href='wods/2026-04-28.html' style='color:#4da6ff;'>2026-04-28</a></li>
