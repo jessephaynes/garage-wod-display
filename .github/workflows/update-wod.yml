@@ -35,81 +35,104 @@ jobs:
 
           mkdir -p wods
           echo "${{ github.event.client_payload.html_b64 }}" | base64 --decode > temp_wod.html
-          LATEST_CONTENT=$(cat temp_wod.html)
+          
+          # SMART EXTRACTION: If ChatGPT sent a full HTML document, extract ONLY what is inside <body>
+          if grep -q "<body" temp_wod.html; then
+            LATEST_CONTENT=$(sed -n '/<body[^>]*>/,/<\/body>/p' temp_wod.html | sed -e '1d' -e '$d')
+          else
+            LATEST_CONTENT=$(cat temp_wod.html)
+          fi
 
           # --- 2. CREATE THE NEW ARCHIVE PAGE ---
-          (
-            echo "<!DOCTYPE html>"
-            echo "<html lang=\"en\">"
-            echo "<head>"
-            echo "  <meta charset=\"UTF-8\" />"
-            echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"
-            echo "  <title>WOD: ${DATE} — ${TITLE}</title>"
-            echo "  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap\" rel=\"stylesheet\">"
-            echo "  <style>"
-            echo "    body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }"
-            echo "    .back-link { display: inline-block; margin-bottom: 30px; padding: 10px 20px; background: #4da6ff; color: #0f0f0f; font-weight: bold; text-decoration: none; border-radius: 8px; font-family: Anton, sans-serif; }"
-            echo "    .back-link:hover { background: #fff; }"
-            echo "    .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; }"
-            echo "  </style>"
-            echo "</head>"
-            echo "<body>"
-            echo "  <a href=\"../index.html\" class=\"back-link\">&laquo; Back to Main Page</a>"
-            echo "  <div class=\"wod-content\">"
-            echo "${LATEST_CONTENT}"
-            echo "  </div>"
-            echo "</body>"
-            echo "</html>"
-          ) > wods/${DATE}.html
+          cat << EOF > wods/${DATE}.html
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>WOD: ${DATE} — ${TITLE}</title>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+            <style>
+              body { margin:0; background:#0f0f0f; color:#eaeaea; font-family:Roboto,sans-serif; text-align:center; padding: 20px; }
+              .back-link { display: inline-block; margin-bottom: 30px; padding: 10px 20px; background: #4da6ff; color: #0f0f0f; font-weight: bold; text-decoration: none; border-radius: 8px; font-family: Anton, sans-serif; }
+              .back-link:hover { background: #fff; }
+              .wod-content { border: 1px solid #333; padding: 10px; border-radius: 8px; max-width: 800px; margin: 0 auto; background: #1a1a1a; text-align: left;}
+            </style>
+          </head>
+          <body>
+            <a href="../index.html" class="back-link">&laquo; Back to Main Page</a>
+            <div class="wod-content">
+              ${LATEST_CONTENT}
+            </div>
+          </body>
+          </html>
+          EOF
 
-          # --- 3. BUILD THE MAIN index.html PAGE ---
-          (
-            echo "<!DOCTYPE html>"
-            echo "<html lang=\"en\">"
-            echo "<head>"
-            echo "  <meta charset=\"UTF-8\" />"
-            echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"
-            echo "  <title>Garage WOD Display</title>"
-            echo "  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap\" rel=\"stylesheet\">"
-            echo "</head>"
-            echo "<body style=\"margin:0;background:#0f0f0f;color:#eaeaea;font-family:Roboto,sans-serif;text-align:center;\">"
-            echo "  <div id=\"latest\" style=\"padding:20px;\">"
-            echo "${LATEST_CONTENT}"
-            echo "  </div>"
-            echo "  <div id=\"archive\" style=\"border-top:2px solid #333;margin-top:40px;padding:20px;\">"
-            echo "    <h2 style=\"font-family:Anton,sans-serif;color:#4da6ff;\">Workout Archive</h2>"
-            echo "    <select onchange=\"if(this.value) window.location.href=this.value;\" style=\"font-size:1.4rem;padding:12px 18px;border-radius:8px;background:#1a1a1a;color:#4da6ff;border:1px solid #4da6ff;max-width:90%;width:90%;max-width:650px;text-align:center;\">"
-            echo "      <option value=\"\">Choose a WOD...</option>"
-          ) > index.html
+          # --- 3. DEDUPLICATE AND UPDATE ARCHIVE LIST ---
+          touch archive_list.txt
+          # Remove existing entry for this date (if it exists) to prevent duplicates
+          grep -v "wods/${DATE}.html" archive_list.txt > temp_archive.txt || true
           
-          # Add newest archive option at the top
-          echo "      <option value='wods/${DATE}.html'>${DATE} — ${TITLE}</option>" >> index.html
+          # Add the newest date to the top
+          echo "      <option value=\"wods/${DATE}.html\">${DATE} — ${TITLE}</option>" > archive_list.txt
+          cat temp_archive.txt >> archive_list.txt
+          rm temp_archive.txt
 
-          # Include previous archive entries if they exist
-          if [ -f archive_list.txt ]; then
-            cat archive_list.txt >> index.html
-          fi
+          # --- 4. BUILD THE MAIN index.html PAGE ---
+          cat << EOF > index.html
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Today's WOD - Garage WOD Display</title>
+            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+            <style>
+              body { margin: 0; font-family: Roboto, sans-serif; background: radial-gradient(circle at top left, #2b2b2b 0%, #0f0f0f 100%); color: #eaeaea; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; min-height: 100vh; text-align: left; overflow-x: hidden; }
+              body:before { content: ""; position: fixed; inset: 0; background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,.03) 0 3px, transparent 3px 6px); opacity: .25; pointer-events: none; }
+              h1 { font-family: Anton, sans-serif; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 2px; color: #dcdcdc; text-shadow: 2px 2px 5px #000, 0 0 15px rgba(91,155,213,.4); margin-bottom: 10px; border-bottom: 5px solid #4da6ff; padding-bottom: 10px; text-align: center; }
+              h2 { font-family: Anton, sans-serif; font-size: 2rem; color: #4da6ff; text-shadow: 0 0 5px rgba(77,166,255,.6); border-bottom: 1px solid #555; padding-bottom: 8px; margin-bottom: 16px; letter-spacing: 1px; }
+              .section { width: 95%; max-width: 1100px; margin: 30px auto; background: linear-gradient(145deg, #242424, #1a1a1a); border: 1px solid #3a3a3a; border-radius: 10px; box-shadow: inset 0 0 6px rgba(255,255,255,.05), 0 6px 20px rgba(0,0,0,.7); padding: 24px 32px; position: relative; overflow: hidden; }
+              .section:before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px); opacity: .2; pointer-events: none; }
+              .section:after { content: ""; position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px); border: 2px dotted rgba(255,255,255,.05); border-radius: 6px; pointer-events: none; }
+              ul { list-style: none; padding: 0; margin: 0; }
+              li { margin: 8px 0; font-size: 1.5rem; color: #f3f3f3; }
+              .highlight { color: #4da6ff; font-weight: bold; text-transform: uppercase; }
+              .notes { background: linear-gradient(135deg, #181818, #202020); border-left: 4px solid #4da6ff; padding: 16px 20px; border-radius: 8px; margin-top: 18px; font-size: 1.2rem; color: #ccc; line-height: 1.6; box-shadow: inset 0 0 10px rgba(255,255,255,.03); }
+              .notes strong { color: #4da6ff; }
+              #archive { border-top: 2px solid #333; margin-top: 40px; padding: 30px 20px; width: 100%; text-align: center; z-index: 1; }
+              #archive select { font-family: Roboto, sans-serif; font-size: 1.4rem; padding: 12px 18px; border-radius: 8px; background: #1a1a1a; color: #4da6ff; border: 1px solid #4da6ff; width: 90%; max-width: 650px; text-align: center; cursor: pointer; outline: none; }
+              #archive select:hover { background: #242424; }
+              .footer { font-size: 0.9rem; color: #777; margin-top: 30px; padding-top: 10px; text-transform: uppercase; letter-spacing: 2px; text-align: center; z-index: 1; }
+            </style>
+          </head>
+          <body>
+            <h1>Today's WOD</h1>
+            <div id="latest" style="width: 100%;">
+              ${LATEST_CONTENT}
+            </div>
+            <div id="archive">
+              <h2 style="font-family: Anton, sans-serif; color: #4da6ff; border: none; margin-bottom: 20px;">Workout Archive</h2>
+              <select onchange="if(this.value) window.location.href=this.value;">
+                <option value="">Choose a WOD...</option>
+          EOF
 
-          # Update archive list file
-          echo "      <option value='wods/${DATE}.html'>${DATE} — ${TITLE}</option>" > new_archive.txt
-          if [ -f archive_list.txt ]; then
-            cat archive_list.txt >> new_archive.txt
-          fi
-          mv new_archive.txt archive_list.txt
+          # Inject the deduplicated archive list
+          cat archive_list.txt >> index.html
 
           # Close out the HTML
-          (
-            echo "    </select>"
-            echo "    </div>"
-            echo "    <div style=\"font-size:0.8rem;color:#777;margin-top:20px;\">Garage WOD Display © 2025</div>"
-            echo "  </body>"
-            echo "</html>"
-          ) >> index.html
+          cat << EOF >> index.html
+              </select>
+            </div>
+            <div class="footer">Garage WOD Display | Forged for Strength © $(date +%Y)</div>
+          </body>
+          </html>
+          EOF
           
           # Clean up the temporary file
           rm temp_wod.html
           
-          # --- 4. COMMIT & PUSH ---
+          # --- 5. COMMIT & PUSH ---
           if [ -n "$(git status --porcelain)" ]; then
             git add index.html archive_list.txt wods/
             git commit -m "Auto update WOD for ${DATE}"
