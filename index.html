@@ -3,159 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Garage WOD Display</title>
+  <title>Today's WOD - Garage WOD Display</title>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body style="margin:0;background:#0f0f0f;color:#eaeaea;font-family:Roboto,sans-serif;text-align:center;">
-  <div id="latest" style="padding:20px;">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Today's WOD</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-body{margin:0;font-family:Roboto,sans-serif;background:radial-gradient(circle at top left,#2b2b2b 0%,#0f0f0f 100%);color:#eaeaea;display:flex;flex-direction:column;align-items:center;padding:40px 20px;min-height:100vh;text-align:left;overflow-x:hidden}
-h1{font-family:Anton,sans-serif;font-size:3.5rem;text-transform:uppercase;letter-spacing:2px;color:#dcdcdc;text-shadow:2px 2px 5px #000,0 0 15px rgba(91,155,213,.4);margin-bottom:10px;border-bottom:5px solid #4da6ff;padding-bottom:10px}
-.section{width:95%;max-width:1100px;margin:30px auto;background:linear-gradient(145deg,#242424,#1a1a1a);border:1px solid #3a3a3a;border-radius:10px;box-shadow:inset 0 0 6px rgba(255,255,255,.05),0 6px 20px rgba(0,0,0,.7);padding:24px 32px;position:relative;overflow:hidden}
-.section:before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 4px);opacity:.2;pointer-events:none}
-.section:after{content:"";position:absolute;top:10px;left:10px;width:calc(100% - 20px);height:calc(100% - 20px);border:2px dotted rgba(255,255,255,.05);border-radius:6px;pointer-events:none}
-h2{font-family:Anton,sans-serif;font-size:2rem;color:#4da6ff;text-shadow:0 0 5px rgba(77,166,255,.6);border-bottom:1px solid #555;padding-bottom:8px;margin-bottom:16px;letter-spacing:1px}
-ul{list-style:none;padding:0;margin:0}
-li{margin:8px 0;font-size:1.5rem;color:#f3f3f3}
-.highlight{color:#4da6ff;font-weight:bold;text-transform:uppercase}
-.notes{background:linear-gradient(135deg,#181818,#202020);border-left:4px solid #4da6ff;padding:16px 20px;border-radius:8px;margin-top:18px;font-size:1.2rem;color:#ccc;line-height:1.6;box-shadow:inset 0 0 10px rgba(255,255,255,.03)}
-.notes strong{color:#4da6ff}
-.footer{font-size:1rem;color:#777;margin-top:50px;padding-top:10px;text-transform:uppercase;letter-spacing:2px;border-top:1px solid #444;text-shadow:1px 1px 2px #000}
-body:before{content:"";position:fixed;inset:0;background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,.03) 0 3px,transparent 3px 6px);opacity:.25;pointer-events:none}
-</style>
+  <style>
+    body { margin: 0; font-family: Roboto, sans-serif; background: radial-gradient(circle at top left, #2b2b2b 0%, #0f0f0f 100%); color: #eaeaea; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; min-height: 100vh; text-align: left; overflow-x: hidden; }
+    body:before { content: ""; position: fixed; inset: 0; background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,.03) 0 3px, transparent 3px 6px); opacity: .25; pointer-events: none; }
+    
+    h1 { font-family: Anton, sans-serif; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 2px; color: #dcdcdc; text-shadow: 2px 2px 5px #000, 0 0 15px rgba(91,155,213,.4); margin-bottom: 10px; border-bottom: 5px solid #4da6ff; padding-bottom: 10px; text-align: center; }
+    h2 { font-family: Anton, sans-serif; font-size: 2rem; color: #4da6ff; text-shadow: 0 0 5px rgba(77,166,255,.6); border-bottom: 1px solid #555; padding-bottom: 8px; margin-bottom: 16px; letter-spacing: 1px; }
+    
+    .section { width: 95%; max-width: 1100px; margin: 30px auto; background: linear-gradient(145deg, #242424, #1a1a1a); border: 1px solid #3a3a3a; border-radius: 10px; box-shadow: inset 0 0 6px rgba(255,255,255,.05), 0 6px 20px rgba(0,0,0,.7); padding: 24px 32px; position: relative; overflow: hidden; }
+    .section:before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px); opacity: .2; pointer-events: none; }
+    .section:after { content: ""; position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px); border: 2px dotted rgba(255,255,255,.05); border-radius: 6px; pointer-events: none; }
+    
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { margin: 8px 0; font-size: 1.5rem; color: #f3f3f3; }
+    
+    .highlight { color: #4da6ff; font-weight: bold; text-transform: uppercase; }
+    .notes { background: linear-gradient(135deg, #181818, #202020); border-left: 4px solid #4da6ff; padding: 16px 20px; border-radius: 8px; margin-top: 18px; font-size: 1.2rem; color: #ccc; line-height: 1.6; box-shadow: inset 0 0 10px rgba(255,255,255,.03); }
+    .notes strong { color: #4da6ff; }
+    
+    /* Archive Dropdown Styles */
+    #archive { border-top: 2px solid #333; margin-top: 40px; padding: 30px 20px; width: 100%; text-align: center; z-index: 1; }
+    #archive select { font-family: Roboto, sans-serif; font-size: 1.4rem; padding: 12px 18px; border-radius: 8px; background: #1a1a1a; color: #4da6ff; border: 1px solid #4da6ff; width: 90%; max-width: 650px; text-align: center; cursor: pointer; outline: none; }
+    #archive select:hover { background: #242424; }
+    
+    .footer { font-size: 0.9rem; color: #777; margin-top: 30px; padding-top: 10px; text-transform: uppercase; letter-spacing: 2px; text-align: center; z-index: 1; }
+  </style>
 </head>
 <body>
-<h1>Today's WOD</h1>
 
-<div class="section">
-<h2>Part A — Warm-Up</h2>
-<ul>
-<li>3 Rounds:</li>
-<li>250m Row</li>
-<li>10 PVC Pass-Throughs or Band Shoulder Openers</li>
-<li>10 Air Squats</li>
-<li>8 Push Press (empty bar)</li>
-<li>6 Strict Pull-Ups or Ring Rows</li>
-<li>20 Single-Unders</li>
-<li>Then:</li>
-<li>2 x 20 sec Front Rack Stretch</li>
-<li>2 x 20 sec Thoracic Opener on Bench</li>
-</ul>
-</div>
+  <h1>Today's WOD</h1>
 
-<div class="section">
-<h2>Part B — Strength</h2>
-<ul>
-<li>Every 3:00 x 6 Sets:</li>
-<li>3 Front Squats</li>
-<li>5 Push Press</li>
-<li>Build across all 6 sets.</li>
-<li>Suggested Loading:</li>
-<li>155 / 175 / 185 / 195 / 205 / 215-225 lb</li>
-</ul>
-<div class="notes">
-<p><strong>Focus:</strong> Fast elbows through the squat and aggressive vertical dip/drive on the press.</p>
-<p><strong>Intent:</strong> Heavy but crisp barbell cycling under fatigue preparation.</p>
-</div>
-</div>
-
-<div class="section">
-<h2>Part C — MetCon</h2>
-<ul>
-<li>"Engine Room"</li>
-<li>4 Rounds For Time:</li>
-<li>400m Run</li>
-<li>15 Toes-to-Bar</li>
-<li>12 Dumbbell Thrusters (50/35 lb)</li>
-<li>15/12 Calorie Echo Bike</li>
-<li>Time Cap: 16 Minutes</li>
-</ul>
-<div class="notes">
-<p><strong>Stimulus:</strong> High-output conditioning with repeatable rounds. Legs and lungs should progressively tighten each round.</p>
-<p><strong>Goal:</strong> Advanced athletes should aim for sub-13 minutes. Intermediate athletes should target finishing under the cap.</p>
-</div>
-</div>
-
-<div class="section">
-<h2>Part D — Accessory (Optional)</h2>
-<ul>
-<li>3 Sets:</li>
-<li>15 GHD Hip Extensions</li>
-<li>20 Banded Face Pulls</li>
-<li>1:00 Front Rack Carry (sandbag or double DBs)</li>
-<li>20 Hollow Rocks</li>
-<li>Rest 90 seconds between sets.</li>
-</ul>
-<div class="notes">
-<p><strong>Accessory Intent:</strong> Build trunk stability and upper-back durability to support front rack strength and cyclical pulling volume.</p>
-</div>
-</div>
-
-<div class="footer">Garage WOD Display | Forged for Strength © 2025</div>
-</body>
-</html>
-  </div>
-  <div id="archive" style="border-top:2px solid #333;margin-top:40px;padding:20px;">
-    <h2 style="font-family:Anton,sans-serif;color:#4da6ff;">Workout Archive</h2>
-    <ul style="list-style:none;padding:0;">
-    <li><a href='wods/2026-05-25.html' style='color:#4da6ff;'>2026-05-25 — Thruster Engine Room</a></li>
-    <li><a href='wods/2026-05-24.html' style='color:#4da6ff;'>2026-05-24 — Legs Lungs Jerk Grinder</a></li>
-    <li><a href='wods/2026-05-24.html' style='color:#4da6ff;'>2026-05-24 — Engine Under Load</a></li>
-    <li><a href='wods/2026-05-22.html' style='color:#4da6ff;'>2026-05-22</a></li>
-    <li><a href='wods/2026-05-22.html' style='color:#4da6ff;'>2026-05-22</a></li>
-    <li><a href='wods/2026-05-19.html' style='color:#4da6ff;'>2026-05-19</a></li>
-    <li><a href='wods/2026-05-19.html' style='color:#4da6ff;'>2026-05-19</a></li>
-    <li><a href='wods/2026-05-18.html' style='color:#4da6ff;'>2026-05-18</a></li>
-    <li><a href='wods/2026-05-13.html' style='color:#4da6ff;'>2026-05-13</a></li>
-    <li><a href='wods/2026-04-28.html' style='color:#4da6ff;'>2026-04-28</a></li>
-    <li><a href='wods/2026-04-26.html' style='color:#4da6ff;'>2026-04-26</a></li>
-    <li><a href='wods/2026-04-25.html' style='color:#4da6ff;'>2026-04-25</a></li>
-    <li><a href='wods/2026-04-24.html' style='color:#4da6ff;'>2026-04-24</a></li>
-    <li><a href='wods/2026-04-21.html' style='color:#4da6ff;'>2026-04-21</a></li>
-    <li><a href='wods/2026-04-19.html' style='color:#4da6ff;'>2026-04-19</a></li>
-    <li><a href='wods/2026-04-16.html' style='color:#4da6ff;'>2026-04-16</a></li>
-    <li><a href='wods/2026-04-07.html' style='color:#4da6ff;'>2026-04-07</a></li>
-    <li><a href='wods/2026-04-07.html' style='color:#4da6ff;'>2026-04-07</a></li>
-    <li><a href='wods/2026-04-06.html' style='color:#4da6ff;'>2026-04-06</a></li>
-    <li><a href='wods/2026-03-31.html' style='color:#4da6ff;'>2026-03-31</a></li>
-    <li><a href='wods/2026-03-31.html' style='color:#4da6ff;'>2026-03-31</a></li>
-    <li><a href='wods/2026-03-25.html' style='color:#4da6ff;'>2026-03-25</a></li>
-    <li><a href='wods/2026-03-19.html' style='color:#4da6ff;'>2026-03-19</a></li>
-    <li><a href='wods/2026-03-19.html' style='color:#4da6ff;'>2026-03-19</a></li>
-    <li><a href='wods/2026-03-18.html' style='color:#4da6ff;'>2026-03-18</a></li>
-    <li><a href='wods/2026-03-17.html' style='color:#4da6ff;'>2026-03-17</a></li>
-    <li><a href='wods/2026-03-17.html' style='color:#4da6ff;'>2026-03-17</a></li>
-    <li><a href='wods/2026-03-05.html' style='color:#4da6ff;'>2026-03-05</a></li>
-    <li><a href='wods/2026-03-03.html' style='color:#4da6ff;'>2026-03-03</a></li>
-    <li><a href='wods/2026-03-02.html' style='color:#4da6ff;'>2026-03-02</a></li>
-    <li><a href='wods/2026-02-26.html' style='color:#4da6ff;'>2026-02-26</a></li>
-    <li><a href='wods/2026-02-26.html' style='color:#4da6ff;'>2026-02-26</a></li>
-    <li><a href='wods/2026-01-10.html' style='color:#4da6ff;'>2026-01-10</a></li>
-    <li><a href='wods/2026-01-03.html' style='color:#4da6ff;'>2026-01-03</a></li>
-    <li><a href='wods/2025-12-28.html' style='color:#4da6ff;'>2025-12-28</a></li>
-    <li><a href='wods/2025-12-17.html' style='color:#4da6ff;'>2025-12-17</a></li>
-    <li><a href='wods/2025-12-16.html' style='color:#4da6ff;'>2025-12-16</a></li>
-    <li><a href='wods/2025-12-15.html' style='color:#4da6ff;'>2025-12-15</a></li>
-    <li><a href='wods/2025-12-13.html' style='color:#4da6ff;'>2025-12-13</a></li>
-    <li><a href='wods/2025-12-07.html' style='color:#4da6ff;'>2025-12-07</a></li>
-    <li><a href='wods/2025-12-05.html' style='color:#4da6ff;'>2025-12-05</a></li>
-    <li><a href='wods/2025-12-03.html' style='color:#4da6ff;'>2025-12-03</a></li>
-    <li><a href='wods/2025-12-02.html' style='color:#4da6ff;'>2025-12-02</a></li>
-    <li><a href='wods/2025-11-27.html' style='color:#4da6ff;'>2025-11-27</a></li>
-    <li><a href='wods/2025-11-21.html' style='color:#4da6ff;'>2025-11-21</a></li>
-    <li><a href='wods/2025-11-15.html' style='color:#4da6ff;'>2025-11-15</a></li>
-    <li><a href='wods/2025-11-13.html' style='color:#4da6ff;'>2025-11-13</a></li>
-    <li><a href='wods/2025-11-12.html' style='color:#4da6ff;'>2025-11-12</a></li>
-    <li><a href='wods/2025-11-11.html' style='color:#4da6ff;'>2025-11-11</a></li>
+  <div id="latest" style="width: 100%;">
+    <div class="section">
+      <h2>Part A — Warm-Up</h2>
+      <ul>
+        <li>3 Rounds:</li>
+        <li>250m Row</li>
+        <li>10 PVC Pass-Throughs or Band Shoulder Openers</li>
+        <li>10 Air Squats</li>
+        <li>8 Push Press (empty bar)</li>
+        <li>6 Strict Pull-Ups or Ring Rows</li>
+        <li>20 Single-Unders</li>
+        <li>Then:</li>
+        <li>2 x 20 sec Front Rack Stretch</li>
+        <li>2 x 20 sec Thoracic Opener on Bench</li>
       </ul>
     </div>
-    <div style="font-size:0.8rem;color:#777;margin-top:20px;">Garage WOD Display © 2025</div>
-  </body>
+
+    <div class="section">
+      <h2>Part B — Strength</h2>
+      <ul>
+        <li>Every 3:00 x 6 Sets:</li>
+        <li>3 Front Squats</li>
+        <li>5 Push Press</li>
+        <li>Build across all 6 sets.</li>
+        <li>Suggested Loading:</li>
+        <li>155 / 175 / 185 / 195 / 205 / 215-225 lb</li>
+      </ul>
+      <div class="notes">
+        <p><strong>Focus:</strong> Fast elbows through the squat and aggressive vertical dip/drive on the press.</p>
+        <p><strong>Intent:</strong> Heavy but crisp barbell cycling under fatigue preparation.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Part C — MetCon</h2>
+      <ul>
+        <li>"Engine Room"</li>
+        <li>4 Rounds For Time:</li>
+        <li>400m Run</li>
+        <li>15 Toes-to-Bar</li>
+        <li>12 Dumbbell Thrusters (50/35 lb)</li>
+        <li>15/12 Calorie Echo Bike</li>
+        <li>Time Cap: 16 Minutes</li>
+      </ul>
+      <div class="notes">
+        <p><strong>Stimulus:</strong> High-output conditioning with repeatable rounds. Legs and lungs should progressively tighten each round.</p>
+        <p><strong>Goal:</strong> Advanced athletes should aim for sub-13 minutes. Intermediate athletes should target finishing under the cap.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Part D — Accessory (Optional)</h2>
+      <ul>
+        <li>3 Sets:</li>
+        <li>15 GHD Hip Extensions</li>
+        <li>20 Banded Face Pulls</li>
+        <li>1:00 Front Rack Carry (sandbag or double DBs)</li>
+        <li>20 Hollow Rocks</li>
+        <li>Rest 90 seconds between sets.</li>
+      </ul>
+      <div class="notes">
+        <p><strong>Accessory Intent:</strong> Build trunk stability and upper-back durability to support front rack strength and cyclical pulling volume.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="archive">
+    <h2 style="font-family: Anton, sans-serif; color: #4da6ff; border: none; margin-bottom: 20px;">Workout Archive</h2>
+    <select onchange="if(this.value) window.location.href=this.value;">
+      <option value="">Choose a WOD...</option>
+      <option value="wods/2026-05-25.html">2026-05-25 — Thruster Engine Room</option>
+      <option value="wods/2026-05-24.html">2026-05-24 — Legs Lungs Jerk Grinder</option>
+      <option value="wods/2026-05-22.html">2026-05-22</option>
+      <option value="wods/2026-05-19.html">2026-05-19</option>
+      <option value="wods/2026-05-18.html">2026-05-18</option>
+      <option value="wods/2026-05-13.html">2026-05-13</option>
+      <option value="wods/2026-04-28.html">2026-04-28</option>
+    </select>
+  </div>
+
+  <div class="footer">Garage WOD Display | Forged for Strength © 2026</div>
+
+</body>
 </html>
