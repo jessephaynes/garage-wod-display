@@ -68,16 +68,18 @@ jobs:
           </html>
           EOF
 
-          # --- 3. DEDUPLICATE AND UPDATE ARCHIVE LIST ---
+          # --- 3. UPDATE ARCHIVE LIST (ALLOWS MULTIPLE PER DAY) ---
           touch archive_list.txt
-          # Remove existing entry for this date (if it exists) to prevent duplicates
-          grep -v "wods/${DATE}.html" archive_list.txt > temp_archive.txt || true
+          cp archive_list.txt temp_archive.txt
+
+          FORMATTED_DATE=$(date -d "$DATE" +%m-%d-%Y)
+
+          # Add the newest workout to the top using the new naming convention
+          echo "      <option value=\"wods/${DATE}.html\">${TITLE} (${FORMATTED_DATE})</option>" > archive_list.txt
           
-          # Add the newest date to the top
-          echo "      <option value=\"wods/${DATE}.html\">${DATE} — ${TITLE}</option>" > archive_list.txt
           cat temp_archive.txt >> archive_list.txt
           rm temp_archive.txt
-
+          
           # --- 4. BUILD THE MAIN index.html PAGE ---
           cat << EOF > index.html
           <!DOCTYPE html>
