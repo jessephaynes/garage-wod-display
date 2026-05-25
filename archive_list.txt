@@ -1,49 +1,49 @@
-    <li><a href='wods/2026-05-25.html' style='color:#4da6ff;'>2026-05-25 — Thruster Engine Room</a></li>
-    <li><a href='wods/2026-05-24.html' style='color:#4da6ff;'>2026-05-24 — Legs Lungs Jerk Grinder</a></li>
-    <li><a href='wods/2026-05-24.html' style='color:#4da6ff;'>2026-05-24 — Engine Under Load</a></li>
-    <li><a href='wods/2026-05-22.html' style='color:#4da6ff;'>2026-05-22</a></li>
-    <li><a href='wods/2026-05-22.html' style='color:#4da6ff;'>2026-05-22</a></li>
-    <li><a href='wods/2026-05-19.html' style='color:#4da6ff;'>2026-05-19</a></li>
-    <li><a href='wods/2026-05-19.html' style='color:#4da6ff;'>2026-05-19</a></li>
-    <li><a href='wods/2026-05-18.html' style='color:#4da6ff;'>2026-05-18</a></li>
-    <li><a href='wods/2026-05-13.html' style='color:#4da6ff;'>2026-05-13</a></li>
-    <li><a href='wods/2026-04-28.html' style='color:#4da6ff;'>2026-04-28</a></li>
-    <li><a href='wods/2026-04-26.html' style='color:#4da6ff;'>2026-04-26</a></li>
-    <li><a href='wods/2026-04-25.html' style='color:#4da6ff;'>2026-04-25</a></li>
-    <li><a href='wods/2026-04-24.html' style='color:#4da6ff;'>2026-04-24</a></li>
-    <li><a href='wods/2026-04-21.html' style='color:#4da6ff;'>2026-04-21</a></li>
-    <li><a href='wods/2026-04-19.html' style='color:#4da6ff;'>2026-04-19</a></li>
-    <li><a href='wods/2026-04-16.html' style='color:#4da6ff;'>2026-04-16</a></li>
-    <li><a href='wods/2026-04-07.html' style='color:#4da6ff;'>2026-04-07</a></li>
-    <li><a href='wods/2026-04-07.html' style='color:#4da6ff;'>2026-04-07</a></li>
-    <li><a href='wods/2026-04-06.html' style='color:#4da6ff;'>2026-04-06</a></li>
-    <li><a href='wods/2026-03-31.html' style='color:#4da6ff;'>2026-03-31</a></li>
-    <li><a href='wods/2026-03-31.html' style='color:#4da6ff;'>2026-03-31</a></li>
-    <li><a href='wods/2026-03-25.html' style='color:#4da6ff;'>2026-03-25</a></li>
-    <li><a href='wods/2026-03-19.html' style='color:#4da6ff;'>2026-03-19</a></li>
-    <li><a href='wods/2026-03-19.html' style='color:#4da6ff;'>2026-03-19</a></li>
-    <li><a href='wods/2026-03-18.html' style='color:#4da6ff;'>2026-03-18</a></li>
-    <li><a href='wods/2026-03-17.html' style='color:#4da6ff;'>2026-03-17</a></li>
-    <li><a href='wods/2026-03-17.html' style='color:#4da6ff;'>2026-03-17</a></li>
-    <li><a href='wods/2026-03-05.html' style='color:#4da6ff;'>2026-03-05</a></li>
-    <li><a href='wods/2026-03-03.html' style='color:#4da6ff;'>2026-03-03</a></li>
-    <li><a href='wods/2026-03-02.html' style='color:#4da6ff;'>2026-03-02</a></li>
-    <li><a href='wods/2026-02-26.html' style='color:#4da6ff;'>2026-02-26</a></li>
-    <li><a href='wods/2026-02-26.html' style='color:#4da6ff;'>2026-02-26</a></li>
-    <li><a href='wods/2026-01-10.html' style='color:#4da6ff;'>2026-01-10</a></li>
-    <li><a href='wods/2026-01-03.html' style='color:#4da6ff;'>2026-01-03</a></li>
-    <li><a href='wods/2025-12-28.html' style='color:#4da6ff;'>2025-12-28</a></li>
-    <li><a href='wods/2025-12-17.html' style='color:#4da6ff;'>2025-12-17</a></li>
-    <li><a href='wods/2025-12-16.html' style='color:#4da6ff;'>2025-12-16</a></li>
-    <li><a href='wods/2025-12-15.html' style='color:#4da6ff;'>2025-12-15</a></li>
-    <li><a href='wods/2025-12-13.html' style='color:#4da6ff;'>2025-12-13</a></li>
-    <li><a href='wods/2025-12-07.html' style='color:#4da6ff;'>2025-12-07</a></li>
-    <li><a href='wods/2025-12-05.html' style='color:#4da6ff;'>2025-12-05</a></li>
-    <li><a href='wods/2025-12-03.html' style='color:#4da6ff;'>2025-12-03</a></li>
-    <li><a href='wods/2025-12-02.html' style='color:#4da6ff;'>2025-12-02</a></li>
-    <li><a href='wods/2025-11-27.html' style='color:#4da6ff;'>2025-11-27</a></li>
-    <li><a href='wods/2025-11-21.html' style='color:#4da6ff;'>2025-11-21</a></li>
-    <li><a href='wods/2025-11-15.html' style='color:#4da6ff;'>2025-11-15</a></li>
-    <li><a href='wods/2025-11-13.html' style='color:#4da6ff;'>2025-11-13</a></li>
-    <li><a href='wods/2025-11-12.html' style='color:#4da6ff;'>2025-11-12</a></li>
-    <li><a href='wods/2025-11-11.html' style='color:#4da6ff;'>2025-11-11</a></li>
+    <option value="wods/2026-05-25.html">2026-05-25 — Thruster Engine Room</option>
+    <option value="wods/2026-05-24.html">2026-05-24 — Legs Lungs Jerk Grinder</option>
+    <option value="wods/2026-05-24.html">2026-05-24 — Engine Under Load</option>
+    <option value="wods/2026-05-22.html">2026-05-22</option>
+    <option value="wods/2026-05-22.html">2026-05-22</option>
+    <option value="wods/2026-05-19.html">2026-05-19</option>
+    <option value="wods/2026-05-19.html">2026-05-19</option>
+    <option value="wods/2026-05-18.html">2026-05-18</option>
+    <option value="wods/2026-05-13.html">2026-05-13</option>
+    <option value="wods/2026-04-28.html">2026-04-28</option>
+    <option value="wods/2026-04-26.html">2026-04-26</option>
+    <option value="wods/2026-04-25.html">2026-04-25</option>
+    <option value="wods/2026-04-24.html">2026-04-24</option>
+    <option value="wods/2026-04-21.html">2026-04-21</option>
+    <option value="wods/2026-04-19.html">2026-04-19</option>
+    <option value="wods/2026-04-16.html">2026-04-16</option>
+    <option value="wods/2026-04-07.html">2026-04-07</option>
+    <option value="wods/2026-04-07.html">2026-04-07</option>
+    <option value="wods/2026-04-06.html">2026-04-06</option>
+    <option value="wods/2026-03-31.html">2026-03-31</option>
+    <option value="wods/2026-03-31.html">2026-03-31</option>
+    <option value="wods/2026-03-25.html">2026-03-25</option>
+    <option value="wods/2026-03-19.html">2026-03-19</option>
+    <option value="wods/2026-03-19.html">2026-03-19</option>
+    <option value="wods/2026-03-18.html">2026-03-18</option>
+    <option value="wods/2026-03-17.html">2026-03-17</option>
+    <option value="wods/2026-03-17.html">2026-03-17</option>
+    <option value="wods/2026-03-05.html">2026-03-05</option>
+    <option value="wods/2026-03-03.html">2026-03-03</option>
+    <option value="wods/2026-03-02.html">2026-03-02</option>
+    <option value="wods/2026-02-26.html">2026-02-26</option>
+    <option value="wods/2026-02-26.html">2026-02-26</option>
+    <option value="wods/2026-01-10.html">2026-01-10</option>
+    <option value="wods/2026-01-03.html">2026-01-03</option>
+    <option value="wods/2025-12-28.html">2025-12-28</option>
+    <option value="wods/2025-12-17.html">2025-12-17</option>
+    <option value="wods/2025-12-16.html">2025-12-16</option>
+    <option value="wods/2025-12-15.html">2025-12-15</option>
+    <option value="wods/2025-12-13.html">2025-12-13</option>
+    <option value="wods/2025-12-07.html">2025-12-07</option>
+    <option value="wods/2025-12-05.html">2025-12-05</option>
+    <option value="wods/2025-12-03.html">2025-12-03</option>
+    <option value="wods/2025-12-02.html">2025-12-02</option>
+    <option value="wods/2025-11-27.html">2025-11-27</option>
+    <option value="wods/2025-11-21.html">2025-11-21</option>
+    <option value="wods/2025-11-15.html">2025-11-15</option>
+    <option value="wods/2025-11-13.html">2025-11-13</option>
+    <option value="wods/2025-11-12.html">2025-11-12</option>
+    <option value="wods/2025-11-11.html">2025-11-11</option>
