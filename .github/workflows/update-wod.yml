@@ -22,7 +22,17 @@ jobs:
           git config --global user.email "you@example.com"
           
           # --- 1. SETUP & DECODE ---
-          DATE=$(date +%F)
+          DATE="${{ github.event.client_payload.date }}"
+          TITLE="${{ github.event.client_payload.title }}"
+
+          if [ -z "$DATE" ]; then
+            DATE=$(date +%F)
+          fi
+
+          if [ -z "$TITLE" ]; then
+            TITLE="Garage WOD"
+          fi
+
           mkdir -p wods
           echo "${{ github.event.client_payload.html_b64 }}" | base64 --decode > temp_wod.html
           LATEST_CONTENT=$(cat temp_wod.html)
@@ -74,7 +84,7 @@ jobs:
           ) > index.html
           
           # Add newest link at the top of the list
-          echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE}</a></li>" >> index.html
+          echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE} — ${TITLE}</a></li>" >> index.html
 
           # Include previous archive entries if they exist
           if [ -f archive_list.txt ]; then
@@ -82,7 +92,7 @@ jobs:
           fi
 
           # Update archive list file
-          echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE}</a></li>" > new_archive.txt
+          echo "    <li><a href='wods/${DATE}.html' style='color:#4da6ff;'>${DATE} — ${TITLE}</a></li>" > new_archive.txt
           if [ -f archive_list.txt ]; then
             # --- THIS IS THE .json TYPO FIX ---
             cat archive_list.txt >> new_archive.txt
