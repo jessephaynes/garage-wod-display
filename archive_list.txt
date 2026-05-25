@@ -2,7 +2,6 @@
       <option value="wods/2026-05-24.html">Engine Under Load (05-24-2026)</option>
       <option value="wods/2026-05-22.html">Clean Battery: (05-22-2026)</option>
       <option value="wods/2026-05-19.html">16-Minute AMRAP: (05-19-2026)</option>
-      <option value="wods/2026-05-19.html">16-Minute AMRAP: (05-19-2026)</option>
       <option value="wods/2026-05-18.html">Squat Clean Battery (05-18-2026)</option>
       <option value="wods/2026-05-13.html">16-Minute AMRAP: (05-13-2026)</option>
       <option value="wods/2026-04-28.html">3 Rounds for Time: (04-28-2026)</option>
@@ -14,7 +13,6 @@
       <option value="wods/2026-04-16.html">20-Minute AMRAP: (04-16-2026)</option>
       <option value="wods/2026-04-07.html">5 Rounds For Time (Cap: 18 min): (04-07-2026)</option>
       <option value="wods/2026-04-06.html">20-Minute AMRAP: (04-06-2026)</option>
-      <option value="wods/2026-03-31.html">5 Rounds: (03-31-2026)</option>
       <option value="wods/2026-03-31.html">5 Rounds: (03-31-2026)</option>
       <option value="wods/2026-03-25.html">16-Minute AMRAP: (03-25-2026)</option>
       <option value="wods/2026-03-19.html">5 Rounds For Time: (03-19-2026)</option>
