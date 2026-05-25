@@ -1,3 +1,4 @@
+      <option value="wods/2026-05-25.html">Garage WOD (05-25-2026)</option>
       <option value="wods/2026-05-25.html">Engine Room Cleans (05-25-2026)</option>
       <option value="wods/2026-05-25.html">Front Rack Engine Builder (05-25-2026)</option>
       <option value="wods/2026-05-24.html">Legs Lungs Jerk Grinder (05-24-2026)</option>
