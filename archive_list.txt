@@ -1,4 +1,4 @@
-    <option value="wods/2026-05-25.html">2026-05-25 — Thruster Engine Room</option>
+      <option value="wods/2026-05-25.html">2026-05-25 — Front Rack Engine Builder</option>
     <option value="wods/2026-05-24.html">2026-05-24 — Legs Lungs Jerk Grinder</option>
     <option value="wods/2026-05-24.html">2026-05-24 — Engine Under Load</option>
     <option value="wods/2026-05-22.html">2026-05-22</option>
