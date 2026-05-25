@@ -1,3 +1,4 @@
+    <li><a href='wods/2026-05-25.html' style='color:#4da6ff;'>2026-05-25 — Garage WOD</a></li>
     <li><a href='wods/2026-05-25.html' style='color:#4da6ff;'>2026-05-25</a></li>
     <li><a href='wods/2026-05-25.html' style='color:#4da6ff;'>2026-05-25</a></li>
     <li><a href='wods/2026-05-25.html' style='color:#4da6ff;'>2026-05-25</a></li>
