@@ -1,4 +1,5 @@
       <option value="wods/2026-06-03.html">Snatch And Engine Burn (06-03-2026)</option>
+      <option value="wods/2026-06-03.html">Snatch And Engine Burn (06-03-2026)</option>
       <option value="wods/2026-06-02.html">Tempo Front Squat Engine (06-02-2026)</option>
       <option value="wods/2026-05-29.html">Front Rack Engine Builder (05-29-2026)</option>
       <option value="wods/2026-05-26.html">Clean Jerk Front Rack (05-26-2026)</option>
