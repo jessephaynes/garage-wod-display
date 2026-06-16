@@ -1,3 +1,4 @@
+      <option value="wods/2026-06-16.html">Row Ski Pull Press (06-16-2026)</option>
       <option value="wods/2026-06-15.html">Run And Jerk Repeats (06-15-2026)</option>
       <option value="wods/2026-06-12.html">Bike Row Clean Jerk (06-12-2026)</option>
       <option value="wods/2026-06-10.html">Front Squat Engine Test (06-10-2026)</option>
