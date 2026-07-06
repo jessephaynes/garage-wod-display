@@ -1,3 +1,4 @@
+      <option value="wods/2026-07-06.html">Sprint and Send (07-06-2026)</option>
       <option value="wods/2026-07-02.html">Front Rack Engine Builder (07-02-2026)</option>
       <option value="wods/2026-06-24.html">Clean Jerk Ladder Grinder (06-24-2026)</option>
       <option value="wods/2026-06-22.html">Press And Pull Pace (06-22-2026)</option>
