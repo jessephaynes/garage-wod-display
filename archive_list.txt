@@ -1,4 +1,5 @@
       <option value="wods/2026-07-18.html">Thruster Burpee Bike Gauntlet (07-18-2026)</option>
+      <option value="wods/2026-07-18.html">Thruster Burpee Bike Gauntlet (07-18-2026)</option>
       <option value="wods/2026-07-14.html">Cleans Under Redline (07-14-2026)</option>
       <option value="wods/2026-07-11.html">Open Floor Bike Sandwich (07-11-2026)</option>
       <option value="wods/2026-07-07.html">Row Buy-In Jerk Grind (07-07-2026)</option>
