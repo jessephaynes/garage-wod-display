@@ -1,3 +1,4 @@
+      <option value="wods/2026-07-24.html">Barbell Engine Builder (07-24-2026)</option>
       <option value="wods/2026-07-21.html">Power Under Pressure (07-21-2026)</option>
       <option value="wods/2026-07-20.html">Front Rack Engine Test (07-20-2026)</option>
       <option value="wods/2026-07-18.html">Thruster Burpee Bike Gauntlet (07-18-2026)</option>
